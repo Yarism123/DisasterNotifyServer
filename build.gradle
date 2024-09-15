@@ -19,32 +19,18 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-//@NotNull같은 검증로직 validation
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-
-	//SQL 문법보는 라이브러리 : p6spy
-	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
-
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.h2database:h2'
+	// Lombok 설정
+	implementation 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	// Test dependencies
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-	//MongoDB
-	//https://velog.io/@joonghyun/Springboot-MongoDB-Springboot%EC%99%80-MongoDB-%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0
-	implementation ('org.springframework.boot:spring-boot-starter-data-mongodb')
-
-	//test 롬복 사용
-	testCompileOnly 'org.projectlombok:lombok'
-	testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {

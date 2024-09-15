@@ -3,4 +3,5 @@ spring:
     name: DisasterNotifyServer
   data:
     mongodb:
-      uri: mongodb+srv://leehappy201:<db_password>@kimmingyeom.3jufr.mongodb.net/?retryWrites=true&w=majority&appName=kimmingyeom
+      uri: mongodb+srv://leehappy201:159753@kimmingyeom.3jufr.mongodb.net/?retryWrites=true&w=majority&appName=kimmingyeom
+      database: kimmingyeom

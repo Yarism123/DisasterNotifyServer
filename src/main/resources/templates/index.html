@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crawling Info 입력</title>
+    <!-- Bootstrap CSS 적용 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Crawling Info 입력</h2>
+    <form id="crawlingInfoForm">
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id" required>
+        </div>
+        <div class="form-group">
+            <label for="name">이름</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="age">나이</label>
+            <input type="number" class="form-control" id="age" name="age" required>
+        </div>
+        <button type="submit" class="btn btn-primary">제출</button>
+        <button type="button" id="getAllInfoBtn" class="btn btn-secondary">리스트 출력</button>
+    </form>
+
+    <h2 class="mt-5">Crawling Info 리스트</h2>
+    <table class="table table-bordered mt-3" id="infoTable">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>이름</th>
+            <th>나이</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 데이터가 여기에 추가됩니다. -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // 폼 제출 이벤트 처리
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('crawlingInfoForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // 기본 제출 방지
+
+            const id = document.getElementById('id').value;
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+
+            // AJAX 요청으로 데이터 전송
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/api/crawling/info', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
+            xhr.onload = function() {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    alert("데이터가 성공적으로 저장되었습니다.");
+                } else {
+                    alert("저장 중 오류가 발생했습니다: " + xhr.statusText);
+                }
+            };
+
+            xhr.onerror = function() {
+                alert("저장 중 오류가 발생했습니다: " + xhr.statusText);
+            };
+
+            // JSON 형태로 데이터 전송
+            const data = JSON.stringify({ id: id, name: name, age: age });
+            xhr.send(data);
+        });
+
+        // 리스트 출력 버튼 클릭 이벤트
+        document.getElementById('getAllInfoBtn').addEventListener('click', function() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', '/api/crawling/getAllInfo', true);
+
+            xhr.onload = function() {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    const infoList = JSON.parse(xhr.responseText);
+                    const tbody = document.getElementById('infoTable').getElementsByTagName('tbody')[0];
+                    tbody.innerHTML = ''; // 기존 데이터 삭제
+
+                    infoList.forEach(info => {
+                        const row = tbody.insertRow();
+                        row.insertCell(0).textContent = info.id;
+                        row.insertCell(1).textContent = info.name;
+                        row.insertCell(2).textContent = info.age;
+                    });
+                } else {
+                    alert("리스트를 가져오는 중 오류가 발생했습니다: " + xhr.statusText);
+                }
+            };
+
+            xhr.onerror = function() {
+                alert("리스트를 가져오는 중 오류가 발생했습니다: " + xhr.statusText);
+            };
+
+            xhr.send();
+        });
+    });
+</script>
+</body>
+</html>

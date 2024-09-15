@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: DisasterNotifyServer
+  data:
+    mongodb:
+      uri: mongodb+srv://leehappy201:<db_password>@kimmingyeom.3jufr.mongodb.net/?retryWrites=true&w=majority&appName=kimmingyeom

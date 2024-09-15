@@ -28,11 +28,19 @@ dependencies {
 	//SQL 문법보는 라이브러리 : p6spy
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
 
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	//MongoDB
+	//https://velog.io/@joonghyun/Springboot-MongoDB-Springboot%EC%99%80-MongoDB-%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0
+	implementation ('org.springframework.boot:spring-boot-starter-data-mongodb')
 
 	//test 롬복 사용
 	testCompileOnly 'org.projectlombok:lombok'

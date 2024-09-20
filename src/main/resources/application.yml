@@ -5,3 +5,12 @@ spring:
     mongodb:
       uri: mongodb+srv://leehappy201:159753@kimmingyeom.3jufr.mongodb.net/?retryWrites=true&w=majority&appName=kimmingyeom
       database: kimmingyeom
+    redis:
+      port: 6379
+      host: localhost
+      password: foobared
+
+
+jwt:
+  secretKey: 2MGg+JzfWr62VcPTgNqMkqIyjOjlhk3MXBcUM8/SvyY=
+

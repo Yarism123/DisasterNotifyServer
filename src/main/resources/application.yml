@@ -10,6 +10,10 @@ spring:
       host: localhost
       password: foobared
 
+firebase:
+  url:
+    key: config/key/serviceAccountKey.json
+
 
 jwt:
   secretKey: 2MGg+JzfWr62VcPTgNqMkqIyjOjlhk3MXBcUM8/SvyY=
